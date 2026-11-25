@@ -1,0 +1,350 @@
+/* ───────── Design tokens ───────── */
+:root {
+  --jet-black: #0a0a0b;
+  --smoke-950: #111113;
+  --smoke-900: #18181b;
+  --smoke-800: #222226;
+  --smoke-700: #34343a;
+  /* Lightened from #6B6B73 so small captions reach WCAG AA (about 5.7:1 on --jet-black). */
+  --smoke-500: #8b8b94;
+  --smoke-300: #a7a7b0;
+  --smoke-100: #e8e8ec;
+  --cherry-500: #c8102e;
+  --cherry-400: #e01b3a;
+  --cherry-glow: rgba(200, 16, 46, 0.45);
+  --danger: #ff5a5f;
+  --success: #3ddc97;
+
+  --line: rgba(232, 232, 236, 0.08);
+  --line-strong: rgba(232, 232, 236, 0.28);
+
+  --font-display: 'Inter Tight', 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Instrument Serif', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --radius-input: 10px;
+  --shadow-soft: 0 12px 32px rgba(0, 0, 0, 0.35);
+  --container: 1200px;
+
+  color-scheme: dark;
+}
+
+/* ───────── Base ───────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--jet-black);
+  color: var(--smoke-300);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-weight: 400;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  color: var(--smoke-100);
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+}
+
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cherry-500);
+  outline-offset: 3px;
+}
+
+/* ───────── Utilities ───────── */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 200;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-pill);
+  background: var(--smoke-100);
+  color: var(--jet-black);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus {
+  transform: none;
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--smoke-500);
+}
+
+/* ───────── Buttons ───────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+  cursor: pointer;
+  transition:
+    background-color 200ms ease,
+    box-shadow 200ms ease,
+    border-color 200ms ease,
+    color 200ms ease;
+}
+
+.btn--md {
+  padding: 0.95rem 1.7rem;
+  font-size: 1rem;
+}
+
+.btn--sm {
+  padding: 0.6rem 1.1rem;
+  font-size: 0.875rem;
+}
+
+.btn:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.btn--primary,
+.btn--danger {
+  background: var(--cherry-500);
+  color: var(--smoke-100);
+  box-shadow: 0 6px 24px var(--cherry-glow);
+}
+
+.btn--primary:hover:not(:disabled),
+.btn--danger:hover:not(:disabled) {
+  background: var(--cherry-400);
+  box-shadow: 0 8px 30px var(--cherry-glow);
+}
+
+.btn--outline {
+  background: transparent;
+  border-color: var(--line-strong);
+  color: var(--smoke-100);
+}
+
+.btn--outline:hover:not(:disabled) {
+  background: rgba(232, 232, 236, 0.08);
+  border-color: var(--smoke-300);
+}
+
+.btn--light {
+  background: var(--smoke-100);
+  color: var(--jet-black);
+}
+
+.btn--light:hover:not(:disabled) {
+  background: var(--smoke-300);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--smoke-300);
+}
+
+.btn--ghost:hover:not(:disabled) {
+  background: rgba(232, 232, 236, 0.07);
+  color: var(--smoke-100);
+}
+
+.btn--delete:hover:not(:disabled) {
+  color: var(--danger);
+}
+
+.icon-btn {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius-pill);
+  background: transparent;
+  color: var(--smoke-100);
+  cursor: pointer;
+  transition: background-color 200ms ease;
+}
+
+.icon-btn:hover {
+  background: rgba(232, 232, 236, 0.08);
+}
+
+/* ───────── Form controls ───────── */
+.input {
+  width: 100%;
+  padding: 0.75rem 0.9rem;
+  border: 1px solid var(--smoke-700);
+  border-radius: var(--radius-input);
+  background: var(--smoke-800);
+  color: var(--smoke-100);
+  transition:
+    border-color 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.input::placeholder {
+  color: var(--smoke-500);
+}
+
+.input:hover:not(:disabled) {
+  border-color: var(--smoke-500);
+}
+
+.input:focus-visible {
+  border-color: var(--cherry-500);
+}
+
+.input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.input[aria-invalid='true'] {
+  border-color: var(--danger);
+}
+
+textarea.input {
+  resize: vertical;
+}
+
+/* ───────── Motion ───────── */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes shimmer {
+  from {
+    background-position: 200% 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(-12%);
+  }
+  to {
+    transform: translateX(12%);
+  }
+}
+
+.rise {
+  animation: rise 800ms ease-out both;
+  animation-delay: var(--delay, 0ms);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 600ms ease,
+    transform 600ms ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .fog {
+    display: none;
+  }
+}
