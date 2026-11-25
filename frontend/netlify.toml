@@ -1,0 +1,10 @@
+[build]
+  base = "frontend"
+  command = "npm run build"
+  publish = "dist"
+
+# Single-page app: send every path to index.html so /members etc. work on refresh.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
